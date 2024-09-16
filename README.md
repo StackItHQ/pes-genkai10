@@ -59,4 +59,61 @@ We're available at techhiring@superjoin.ai for all queries.
 All the best ✨.
 
 ## Developer's Section
-*Add your video here, and your approach to the problem (optional). Leave some comments for us here if you want, we will be reading this :)*
+
+# Google Sheets and Database Sync
+
+This project facilitates real-time synchronization between Google Sheets and a MySQL database. It updates both platforms to ensure consistency, handling data insertion, updates, and deletions efficiently.
+
+## Project Overview
+
+The goal of this project is to keep a Google Sheet and a MySQL database in sync. Changes made to the Google Sheet are reflected in the database, and vice versa. The project is designed to handle the following operations:
+
+1. **Sync Google Sheets to Database**: Updates and inserts new rows in the database based on changes in the Google Sheet.
+2. **Sync Database to Google Sheets**: Updates and inserts new rows in the Google Sheet based on changes in the database.
+
+## Approach
+
+1. **Google Sheets to Database Sync**:
+    - Fetch data from Google Sheets.
+    - Compare fetched data with existing data in the database.
+    - Update existing rows, insert new rows, and delete rows in the database based on the comparison.
+
+2. **Database to Google Sheets Sync**:
+    - Fetch changes from the database since the last sync.
+    - Update the Google Sheet to reflect these changes, including handling row insertions and deletions.
+    - Ensure the Google Sheet's data reflects the most recent state of the database.
+
+## Prerequisites
+
+- Python 3.x
+- MySQL Database
+- Google Sheets API credentials
+
+## Setup
+
+1. **Clone the Repository**:
+    ```bash
+    git clone <repository-url>
+    cd <repository-folder>
+    ```
+
+2. **Install Dependencies**:
+    Ensure you have the required Python libraries. You can install them using `pip`:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3. **Configure Database**:
+    Ensure your MySQL database is properly set up and accessible. Update the database connection parameters in `main.py`.
+
+4. **Setup Google Sheets API**:
+    - Obtain Google Sheets API credentials and configure the credentials file as specified in `main.py`.
+
+## Running the Script
+
+To run the synchronization script, navigate to the project directory and execute the `main.py` file:
+
+```bash
+cd <repository-folder>
+python main.py
+
