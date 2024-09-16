@@ -109,6 +109,9 @@ The goal of this project is to keep a Google Sheet and a MySQL database in sync.
 4. **Setup Google Sheets API**:
     - Obtain Google Sheets API credentials and configure the credentials file as specified in `main.py`.
 
+5. **SideNote**
+   - Make sure to have your table schema ready in the sql before hand , the code updates the values but does not create the table for the same.
+
 ## Running the Script
 
 To run the synchronization script, navigate to the project directory and execute the `main.py` file:
