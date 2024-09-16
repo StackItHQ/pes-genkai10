@@ -112,11 +112,29 @@ The goal of this project is to keep a Google Sheet and a MySQL database in sync.
 5. **SideNote**
    - Make sure to have your table schema ready in the sql before hand , the code updates the values but does not create the table for the same.
 
-## Running the Script
+## Other Notes
 
-To run the synchronization script, navigate to the project directory and execute the `main.py` file:
+- The project works on two major keypoints , which is a change log table that accounts for all the changes made on the sql table itself and the other being a last modified time stamp for the sheets , this timestamp is stored on the z1 cell accordingly .For this particular timestamp I wrote an app script that creates a trigger . The function looks like this :
+function onEdit(e) {
+  // Get the active sheet
+  const sheet = e.source.getActiveSheet();
+  
+  // Choose the cell to store the timestamp
+  const timestampCell = sheet.getRange('Z1');  // Adjust if needed
+  
+  // Set the current timestamp (date and time)
+  timestampCell.setValue(new Date());
+  
+  // Apply a custom date-time format to show both date and time
+  timestampCell.setNumberFormat('MM/dd/yyyy HH:mm:ss');  // Adjust format if needed
+}
+- For the change log table I created a set of triggers that take care of the insertions of operations into itself 
+- For any form of updates I compare the two time stamps and have separate functions for changes made to both the sheets and the sql
+- A major issue I bumped into was that initially I did not use timestamps for the google sheets , and hence it would always update based on whatever was on the google sheet and overwrite the sql database , disregarding any change made to the database .
+- I fixed this issue by introducing the timestamp trigger on the z1 cell .
+- some edge cases I hanedled were that I skip incomplete rows as well as duplicated rows as well
+- The main function is based on polling , which occurs every 10 seconds , this time limit can be changed .
 
-```bash
-cd <repository-folder>
-python main.py
+
+
 
